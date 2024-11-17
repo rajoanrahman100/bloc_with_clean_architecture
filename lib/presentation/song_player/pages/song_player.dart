@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_clean_arch_firebase/common/common/widgets/appbar/app_bar.dart';
+import 'package:flutter_bloc_clean_arch_firebase/common/common/widgets/favorite_button/favorite_button.dart';
 import 'package:flutter_bloc_clean_arch_firebase/core/constants/app_urls.dart';
 import 'package:flutter_bloc_clean_arch_firebase/domain/entities/song/song.dart';
+import 'package:flutter_bloc_clean_arch_firebase/presentation/song_player/bloc/song_player_cubit.dart';
+import 'package:flutter_bloc_clean_arch_firebase/presentation/song_player/bloc/song_player_state.dart';
 
 import '../../../core/configs/theme/app_colors.dart';
 
@@ -30,25 +33,28 @@ class SongPlayerPage extends StatelessWidget {
           )
         ),
       ),
-      body: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(
-            vertical: 16,
-            horizontal: 16
+      body: BlocProvider(
+        create: (_)=>SongPlayerCubit()..loadSong('${AppURLs.songFirestorage}${songEntity.artist} - ${songEntity.title}.mp3?${AppURLs.mediaAlt}'),
+        child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(
+              vertical: 16,
+              horizontal: 16
+            ),
+            child: Builder(
+              builder: (context) {
+                return Column(
+                  children: [
+                    _songCover(context),
+                    const SizedBox(height: 20,),
+                    _songDetail(),
+                    const SizedBox(height: 30,),
+                    _songPlayer(context)
+                  ],
+                );
+              }
+            ),
           ),
-          child: Builder(
-            builder: (context) {
-              return Column(
-                children: [
-                  _songCover(context),
-                  const SizedBox(height: 20,),
-                  _songDetail(),
-                  const SizedBox(height: 30,),
-                  _songPlayer(context)
-                ],
-              );
-            }
-          ),
-        ),
+      ),
       );
   }
 
@@ -91,16 +97,16 @@ class SongPlayerPage extends StatelessWidget {
               ),
           ],
         ),
-          // FavoriteButton(
-          //   songEntity: songEntity
-          // )
+          FavoriteButton(
+            songEntity: songEntity
+          )
       ],
     );
   }
 
   Widget _songPlayer(BuildContext context) {
-    return Container();
-    /*return BlocBuilder<SongPlayerCubit,SongPlayerState>(
+
+    return BlocBuilder<SongPlayerCubit,SongPlayerState>(
       builder: (context, state) {
         if(state is SongPlayerLoading){
           return const CircularProgressIndicator();
@@ -155,7 +161,7 @@ class SongPlayerPage extends StatelessWidget {
 
         return Container();
       },
-    );*/
+    );
   }
 
   String formatDuration(Duration duration) {

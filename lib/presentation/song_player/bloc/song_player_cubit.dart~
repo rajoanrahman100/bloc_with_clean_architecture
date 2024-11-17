@@ -47,11 +47,4 @@ class SongPlayerCubit extends Cubit<SongPlayerState> {
 
     emit(SongPlayerLoaded());
   }
-
-  @override
-  Future<void> close() {
-    // TODO: implement close
-    audioPlayer.dispose();
-    return super.close();
-  }
 }

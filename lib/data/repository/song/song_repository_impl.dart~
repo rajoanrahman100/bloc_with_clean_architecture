@@ -11,4 +11,16 @@ class SongRepositoryImpl implements SongRepository {
     return await sl<SongFirebaseService>().getNewSongs();
   }
 
+  @override
+  Future<Either> getPlayList() async{
+    // TODO: implement getPlayList
+    return await sl<SongFirebaseService>().getPlayList();
+  }
+
+  @override
+  Future<Either> addOrRemoveFavouriteSong() {
+    // TODO: implement addOrRemoveFavouriteSong
+    throw UnimplementedError();
+  }
+
 }
