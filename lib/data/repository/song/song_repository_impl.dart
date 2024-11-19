@@ -6,21 +6,20 @@ import '../../sources/songs/song_firebase_service.dart';
 
 class SongRepositoryImpl implements SongRepository {
   @override
-  Future<Either> getNewSongs() async{
+  Future<Either> getNewSongs() async {
     // TODO: implement getNewSongs
     return await sl<SongFirebaseService>().getNewSongs();
   }
 
   @override
-  Future<Either> getPlayList() async{
+  Future<Either> getPlayList() async {
     // TODO: implement getPlayList
     return await sl<SongFirebaseService>().getPlayList();
   }
 
   @override
-  Future<Either> addOrRemoveFavouriteSong(String songId) {
+  Future<Either> addOrRemoveFavouriteSong(String songId) async {
     // TODO: implement addOrRemoveFavouriteSong
-    throw UnimplementedError();
+    return await sl<SongFirebaseService>().addOrRemoveFavoriteSong(songId);
   }
-
 }
