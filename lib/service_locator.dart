@@ -6,8 +6,10 @@ import 'package:flutter_bloc_clean_arch_firebase/domain/repository/auth.dart';
 import 'package:flutter_bloc_clean_arch_firebase/domain/repository/song/song.dart';
 import 'package:flutter_bloc_clean_arch_firebase/domain/usecase/auth/signin.dart';
 import 'package:flutter_bloc_clean_arch_firebase/domain/usecase/auth/signup.dart';
+import 'package:flutter_bloc_clean_arch_firebase/domain/usecase/song/add_remove_favourite_song.dart';
 import 'package:flutter_bloc_clean_arch_firebase/domain/usecase/song/get_new_songs.dart';
 import 'package:flutter_bloc_clean_arch_firebase/domain/usecase/song/get_play_list.dart';
+import 'package:flutter_bloc_clean_arch_firebase/domain/usecase/song/is_favourite_song.dart';
 import 'package:get_it/get_it.dart';
 
 final sl = GetIt.instance;
@@ -24,4 +26,6 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<SigninUseCase>(SigninUseCase());
   sl.registerSingleton<GetNewsSongsUseCase>(GetNewsSongsUseCase());
   sl.registerSingleton<GetPlayListUseCase>(GetPlayListUseCase());
+  sl.registerSingleton<AddRemoveFavouriteSongUseCase>(AddRemoveFavouriteSongUseCase());
+  sl.registerSingleton<IsFavouriteSongUseCase>(IsFavouriteSongUseCase());
 }

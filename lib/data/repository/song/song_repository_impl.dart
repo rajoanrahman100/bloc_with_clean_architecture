@@ -22,4 +22,10 @@ class SongRepositoryImpl implements SongRepository {
     // TODO: implement addOrRemoveFavouriteSong
     return await sl<SongFirebaseService>().addOrRemoveFavoriteSong(songId);
   }
+
+  @override
+  Future<bool> isFavouriteSong(String songId) async {
+    // TODO: implement isFavouriteSong
+    return await sl<SongFirebaseService>().isFavouriteSong(songId);
+  }
 }
