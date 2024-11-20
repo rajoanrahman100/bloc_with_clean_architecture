@@ -7,12 +7,18 @@ import 'package:flutter_bloc_clean_arch_firebase/service_locator.dart';
 
 class AuthRepositoryImpl extends AuthRepository {
   @override
-  Future<void> signIn(SignInUserReq signinUserReq) async {
-    // TODO: implement signIn
+  Future<Either> signIn(SignInUserReq signinUserReq) async {
+    return await sl<AuthFirebaseServiceImpl>().signIn(signinUserReq);
   }
 
   @override
   Future<Either> signUp(CreateUserReq createUserReq) async {
-   return await sl<AuthFirebaseServiceImpl>().signUp(createUserReq);
+    return await sl<AuthFirebaseServiceImpl>().signUp(createUserReq);
+  }
+
+  @override
+  Future<Either> getUSer() {
+    // TODO: implement getUSer
+
   }
 }

@@ -1,0 +1,12 @@
+import 'package:flutter_bloc_clean_arch_firebase/presentation/profile/bloc/profile_info_state.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+
+class ProfileInfoCubit extends Cubit<ProfileInfoState> {
+  ProfileInfoCubit() : super(ProfileInfoLoading());
+
+  Future<void> getUser() async {
+    emit(ProfileInfoLoading());
+    await Future.delayed(const Duration(seconds: 2));
+    emit(ProfileInfoLoaded());
+  }
+}

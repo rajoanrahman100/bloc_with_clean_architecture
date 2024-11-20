@@ -12,8 +12,6 @@ import 'package:flutter_bloc_clean_arch_firebase/domain/usecase/song/get_play_li
 import 'package:flutter_bloc_clean_arch_firebase/domain/usecase/song/is_favourite_song.dart';
 import 'package:get_it/get_it.dart';
 
-import 'domain/usecase/auth/getUser.dart';
-
 final sl = GetIt.instance;
 
 Future<void> initializeDependencies() async {
@@ -30,5 +28,4 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<GetPlayListUseCase>(GetPlayListUseCase());
   sl.registerSingleton<AddRemoveFavouriteSongUseCase>(AddRemoveFavouriteSongUseCase());
   sl.registerSingleton<IsFavouriteSongUseCase>(IsFavouriteSongUseCase());
-  sl.registerSingleton<GetUserUseCase>(GetUserUseCase());
 }
